@@ -1,4 +1,4 @@
-FROM sergeyzh/centos6-java:jdk8
+FROM sergeyzh/centos6-java:jdk7-1.7.0_80
 
 MAINTAINER Sergey Zhukov, sergey@jetbrains.com
 
