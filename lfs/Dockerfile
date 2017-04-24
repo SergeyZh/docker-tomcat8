@@ -1,4 +1,4 @@
-FROM sergeyzh/tomcat8-log4j
+FROM sergeyzh/tomcat8-log4j:8.0.43
 
 MAINTAINER Sergey Zhukov, sergey@jetbrains.com
 
