@@ -10,8 +10,7 @@ ENV TOMCAT_BIN apache-tomcat-${TOMCAT_VER}.tar.gz
 ENV WRAPPER_VER 3.5.26
 ENV WRAPPER_URL http://wrapper.tanukisoftware.com/download/${WRAPPER_VER}/wrapper-linux-x86-64-${WRAPPER_VER}.tar.gz
 
-RUN wget -O /home/tomcat/${TOMCAT_BIN} `curl https://tomcat.apache.org/download-80.cgi | \
-	     grep ${TOMCAT_BIN} | grep -v www.apache.org | sed "s#.*href=\"\(.*${TOMCAT_BIN}\)\".*#\1#"` && \
+RUN wget -O /home/tomcat/${TOMCAT_BIN} https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/${TOMCAT_BIN} && \
 	     cd /home/tomcat && tar -xzf ${TOMCAT_BIN} && mv apache-tomcat-${TOMCAT_VER} apache-tomcat-current && rm -rf apache-tomcat-current/webapps/* && \
 	     rm /home/tomcat/${TOMCAT_BIN}
 
