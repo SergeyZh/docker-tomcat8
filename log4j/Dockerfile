@@ -2,19 +2,14 @@ FROM sergeyzh/tomcat8:jdk7-1.7.0_80-8.5.13
 
 MAINTAINER Sergey Zhukov, sergey@jetbrains.com
 
-ENV LOG4J_VER 1.2.17
-ENV LOG4J_BIN log4j-${LOG4J_VER}.tar.gz
-
-# Download appropriate juli libs
-RUN URL=https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER} && \
-	wget -O /home/tomcat/apache-tomcat-current/bin/tomcat-juli.jar ${URL}/bin/extras/tomcat-juli.jar && \
-	wget -O /home/tomcat/apache-tomcat-current/lib/tomcat-juli-adapters.jar ${URL}/bin/extras/tomcat-juli-adapters.jar
+ENV LOG4J_VER 2.8.2
+ENV LOG4J_BIN apache-log4j-${LOG4J_VER}-bin.tar.gz
 
 RUN wget -O /home/tomcat/${LOG4J_BIN} http://apache-mirror.rbc.ru/pub/apache/logging/log4j/${LOG4J_VER}/${LOG4J_BIN} && \
-    cd /home/tomcat/ && tar -xzf ${LOG4J_BIN} && mv apache-log4j-${LOG4J_VER}/log4j-${LOG4J_VER}.jar /home/tomcat/apache-tomcat-current/lib/ && \
-    rm -rf apache-log4j-${LOG4J_VER} ${LOG4J_BIN}
+    cd /home/tomcat/ && tar -xzf ${LOG4J_BIN} && for i in api core jul ; do mv apache-log4j-${LOG4J_VER}-bin/log4j-$i-${LOG4J_VER}.jar /home/tomcat/apache-tomcat-current/lib/ ; done && \
+    rm -rf apache-log4j-${LOG4J_VER}-bin ${LOG4J_BIN}
 
-ADD tomcat-log4j.xml /home/tomcat/apache-tomcat-current/conf/
+ADD tomcat-log4j2.xml /home/tomcat/apache-tomcat-current/conf/
 
 # Apply additional transformations to children images
 ONBUILD ADD wrapper /home/tomcat/wrapper/
