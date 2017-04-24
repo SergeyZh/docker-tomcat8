@@ -1,4 +1,4 @@
-FROM sergeyzh/tomcat8-log4j:jdk7-1.7.0_80-8.5.13
+FROM sergeyzh/tomcat8-log4j2:jdk7-1.7.0_80-8.5.13
 
 MAINTAINER Sergey Zhukov, sergey@jetbrains.com
 
