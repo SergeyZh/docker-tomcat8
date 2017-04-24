@@ -1,10 +1,10 @@
-FROM sergeyzh/centos6-java:jdk7-1.7.0_80
+FROM sergeyzh/centos6-java:jdk7-1.7.0_80-8.5.13
 
 MAINTAINER Sergey Zhukov, sergey@jetbrains.com
 
 RUN /usr/sbin/useradd tomcat
 
-ENV TOMCAT_VER 8.0.43
+ENV TOMCAT_VER 8.5.13
 ENV TOMCAT_BIN apache-tomcat-${TOMCAT_VER}.tar.gz
 
 ENV WRAPPER_VER 3.5.26
