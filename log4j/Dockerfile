@@ -15,6 +15,7 @@ RUN wget -O /home/tomcat/${LOG4J_BIN} http://apache-mirror.rbc.ru/pub/apache/log
     rm -rf apache-log4j-${LOG4J_VER} ${LOG4J_BIN}
 
 ADD tomcat-log4j.xml /home/tomcat/apache-tomcat-current/conf/
+ADD log4j.dtd /home/tomcat/apache-tomcat-current/conf/
 
 # Apply additional transformations to children images
 ONBUILD ADD wrapper /home/tomcat/wrapper/
